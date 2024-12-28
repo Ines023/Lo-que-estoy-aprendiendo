@@ -1,0 +1,151 @@
+/* Estilos para los títulos */
+h1 {
+    color: #007acc;
+    /* Azul */
+    font-size: 2.5em;
+    text-align: center;
+    margin-top: 20px;
+    border-bottom: 2px solid #007acc;
+    padding-bottom: 10px;
+}
+
+h2 {
+    color: #eab700;
+    /* Amarillo */
+    font-size: 2em;
+    margin-top: 20px;
+    border-bottom: 1px solid #eab700;
+    padding-bottom: 5px;
+}
+
+h3 {
+    color: #718c00;
+    /* Verde */
+    font-size: 1.6em;
+    margin-top: 15px;
+}
+
+h4 {
+    color: #c82829;
+    /* Rojo */
+    font-size: 1.35em;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+h5 {
+    color: #8959a8;
+    /* Púrpura */
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+h6 {
+    color: #8e908c;
+    /* Gris */
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+/* Estilos para la tabla de contenido */
+#table-of-contents {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 5%;
+    max-width: 100%;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+#table-of-contents h2 {
+    color: #007acc;
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#table-of-contents ul {
+    list-style-type: none;
+    padding: 5px 0;
+}
+
+#table-of-contents >ul>li {
+    margin: 10px 0;
+}
+
+#table-of-contents li ul {
+    margin-left: 20px;
+    /* Indent sublists */
+}
+
+#table-of-contents a {
+    text-decoration: none;
+    color: #007acc;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+#table-of-contents a:hover {
+    text-decoration: underline;
+    color: #005f99;
+}
+
+#table-of-contents li ul a {
+    text-decoration: none;
+    color: #0f3955;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+#table-of-contents li ul a:hover {
+    text-decoration: underline;
+    color: #002238;
+}
+
+#table-of-contents li ul li ul {
+    list-style-type: square;
+    color: #969fa5;
+}
+
+#table-of-contents li ul li ul a {
+    text-decoration: none;
+    color: #969fa5;
+    font-size: 1em;
+
+}
+
+#table-of-contents li ul li ul a:hover {
+    text-decoration: underline;
+    color: #666d72;
+}
+
+/* Blockquotes */
+
+blockquote {
+    padding: 2%;
+}
+
+blockquote.nota {
+    color: rgb(83, 66, 40);
+    background: rgba(253, 172, 51, 0.226);
+    border-color: rgba(255, 200, 97, 0.5);
+}
+
+blockquote.nota strong {
+    color: rgb(184, 75, 11);
+}
+
+blockquote.comentario {
+    color: rgb(97, 73, 104);
+    background: rgba(144, 141, 145, 0.096);
+    border-color: rgba(145, 134, 197, 0.288);
+}
+
+/* Código inline */
+:not(pre):not(.hljs)>code {
+    color: #bb5f14;
+    font-size: inherit;
+    background-color: #f5dd5473;
+    padding: 0 0.3em;
+}

@@ -1,0 +1,9 @@
+{
+	"Stylesheet": {
+		"prefix": "Style",
+		"body": [
+			"<link rel=\"stylesheet\" href=\"../static/style/personalizaciones.css\">"
+		],
+		"description": "Insertar estilo CSS personalizado"
+	}
+}

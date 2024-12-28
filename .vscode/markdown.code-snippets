@@ -1,0 +1,44 @@
+{
+	"Blockquote Comentario": {
+		"prefix": "BQcom",
+		"body": [
+			"<blockquote class=\"comentario\">",
+			"\t$0",
+			"</blockquote>"
+		],
+		"description": "Insertar blockquote con clase comentario"
+	},
+	"Blockquote Nota": {
+		"prefix": "BQnota",
+		"body": [
+			"<blockquote class=\"nota\">",
+			"\t$0",
+			"</blockquote>"
+		],
+		"description": "Insertar blockquote con clase nota"
+	},
+	"Plantilla Mis Notas": {
+		"prefix": "SPN",
+		"body": [
+			"# ${1:Título} <!-- omit from toc -->",
+			"",
+			"![Cabecera](../static/images/ghibli/ )",
+			"",
+			"## Introducción",
+			"",
+			"## ${2:Presentación}",
+			"",
+			"<div id=\"table-of-contents\">",
+			"",
+			"## Tabla de Contenido <!-- omit from toc -->",
+			"",
+			"- [Primera sección](#primera-sección)",
+			"",
+			"</div>",
+			"",
+			"## ${3:Primera Sección}",
+			"$0"
+		],
+		"description": "Plantilla básica para mis documentos de notas hechos en Markdown"
+	}
+}
