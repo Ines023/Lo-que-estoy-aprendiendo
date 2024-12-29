@@ -117,6 +117,10 @@ Todo proyecto se puede hacer en JS si tienes las suficientes ganas.
     - [Object.values()](#objectvalues)
     - [Object.entries()](#objectentries)
   - [Operador de encadenamiento opcional](#operador-de-encadenamiento-opcional)
+- [Asincronía](#asincronía)
+  - [Callbacks](#callbacks)
+  - [Promises](#promises)
+  - [Async/Await](#asyncawait)
 
 </div>
 
@@ -1477,4 +1481,122 @@ let persona = {
 
 console.log(persona.direccion?.ciudad); // "Springfield"
 console.log(persona.contacto?.telefono); // undefined, no produce error
+```
+## Asincronía
+
+Dos funciones son asíncronas si se ejecutan en paralelo.
+Empezamos a ejecutar funciones en el orden de llamada y no según se hayan definido.
+
+<blockquote class="comentario">
+
+  De utilidad cuando funciones llevan un tiempo como utilizando `setTimeout(función,tiempo ms)` o `setInterval(función,tiempo ms)`
+</blockquote>
+
+### Callbacks
+
+Un callback es una función que pasamos como argumento a otra función y se ejecuta al terminar la ejecución de la función principal.
+
+Suelen usarse para manejar procesos asíncronos.
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+
+numbers.forEach(function(number) {
+    console.log(number * 2);
+});
+
+numbers.forEach(number => console.log(number * 2));
+
+// Ejemplo con operación asíncrona
+function fetchData(callback) {
+    setTimeout(() => {
+        const data = { id: 1, name: "User" };
+        callback(data);
+    }, 2000);
+}
+
+fetchData(function(data) {
+    console.log("Data received:", data);
+});
+```
+
+### Promises
+
+La forma moderna de manejar asincronía actualmente.
+
+**Tenemos:**
+
+- *producing code* que toma un tiempo en ejecutarse
+- *consuming code* que debe esperar a su resultado
+
+Una Promise es un objeto que contiene ambos.  
+Representa la finalización (eventualmente) de una operación asíncrona y su valor resultante.
+
+```js
+// ESTRUCTURA
+
+let myPromise = new Promise(function(myResolve, myReject){
+    //Producing code (tomará un tiempo)
+
+    myResolve(resultado); // Cuando se ejecute con éxito
+    myReject(objeto error); // Cuando haya un error
+});
+
+
+// Consuming Code (primero espera a que se cumpla la promesa)
+myPromise.then(
+    function(value){/*Código si hay éxito*/ }
+    function(error){/*Código si hay error*/ }
+)
+
+```
+
+El objeto Promise tiene dos propiedades:
+
+| Estado    | Resultado    |
+| --------- | ------------ |
+| Pending   | undefined    |
+| Fulfilled | valor        |
+| Rejected  | Objeto error |
+
+
+```js
+// EJEMPLO
+
+// Crear una nueva Promise
+const fetchData = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        const data = { id: 1, name: "User" };
+        resolve(data); // Resuelve la Promise con los datos
+    }, 2000);
+});
+
+// Usar la Promise
+fetchData.then(data => {
+    console.log("Data received:", data);
+}).catch(error => {
+    console.error("Error:", error);
+});
+```
+
+### Async/Await
+
+Describimos código asíncrono de forma más estructurada.
+
+- **Async:** Declaramos la función asíncrona.
+- **Await:** Esperamos a que se resuelva una promise. Solo puede usarse dentro de una función asíncrona.
+
+```js
+// Función asíncrona que usa await
+async function fetchData() {
+    const data = await new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve({ id: 1, name: "User" });
+        }, 2000);
+    });
+    console.log("Data received:", data);
+}
+
+// Llamar a la función asíncrona
+fetchData();
 ```
