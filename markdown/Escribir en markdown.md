@@ -1,10 +1,31 @@
-# MARKDOWN
+<link rel="stylesheet" href="../static/style/personalizaciones.css">
 
->Se utiliza a menudo en documentación de GitHub, como README files.
+# Markdown <!-- omit from toc -->
 
-## BÁSICO
+![Cabecera](../static/images/ghibli/howl1.jpg)
 
-### TÍTULOS
+Se utiliza a menudo en **documentación** de [GitHub](https://www.github.com), como `README` files.
+
+<div id="table-of-contents">
+
+## Tabla de Contenido <!-- omit from toc -->
+
+- [Básico](#básico)
+  - [Títulos](#títulos)
+  - [Énfasis](#énfasis)
+  - [Enlaces](#enlaces)
+  - [Imágenes](#imágenes)
+  - [Código](#código)
+  - [Tablas](#tablas)
+  - [Citas](#citas)
+  - [Separadores](#separadores)
+  - [Caracteres reservados](#caracteres-reservados)
+
+</div>
+
+## Básico
+
+### Títulos
 
 Como en HTML hay 6. Cuantos más # más pequeño.
 
@@ -14,7 +35,7 @@ Como en HTML hay 6. Cuantos más # más pequeño.
 ###### Tu título 6
 ```
 
-### ÉNFASIS
+### Énfasis
 
 Podemos escribir en **negrita** o *cursiva*.
 
@@ -25,7 +46,7 @@ __Negrita__
 _Cursiva_
 ```
 
-### ENLACES
+### Enlaces
 
 Se pueden incluir enlaces, como este a [Google](https://www.google.es)
 
@@ -33,16 +54,16 @@ Se pueden incluir enlaces, como este a [Google](https://www.google.es)
 [Google](https://www.google.es)
 ```
 
-### IMÁGENES
+### Imágenes
 
 Se pueden incluir imágenes de forma similar añadiendo una exclamación
-![El castillo Ambulante](../images/howl1.jpg)
+![El castillo Ambulante](../images/ghibli/howl1.jpg)
 
 ```md
-![El castillo Ambulante](../images/howl1.jpg)
+![El castillo Ambulante](../images/ghibli/howl1.jpg)
 ```
 
-### CÓDIGO
+### Código
 
 Se pueden escribir fragmentos de código rodeándolos de ```
 
@@ -52,7 +73,7 @@ Se pueden escribir fragmentos de código rodeándolos de ```
     ```
 ```
 
-### TABLAS
+### Tablas
 
 Separando una lista de elementos con guiones - y pipes | se pueden hacer tablas
 
@@ -68,7 +89,7 @@ Separando una lista de elementos con guiones - y pipes | se pueden hacer tablas
 | fila2     | fila2     | fila2     |
 ```
 
-### CITAS
+### Citas
 
 Se pueden citar frases con >
 
@@ -78,12 +99,12 @@ Se pueden citar frases con >
 >Hacer apuntes en markdown fue una gran idea - Inés
 ```
 
-### SEPARADORES
+### Separadores
 
 ---
 Una línea permite separar fácilmente.
 
->CUIDADO:
+>**CUIDADO:**
 >Con texto inmediatamente encima lo trata como un título 2.
 
 ```md
@@ -92,10 +113,11 @@ Una línea permite separar fácilmente.
 ___
 ```
 
-### CARACTERES RESERVADOS
+### Caracteres reservados
 
-Hay caracteres especiales en markdown cuyo efecto se puede anular utilizando \ antes.
-"De esa manera, puedo escribir \* sin problema."
+Hay caracteres especiales en markdown cuyo efecto se puede anular utilizando `\` antes.  
+
+**"De esa manera, puedo escribir \* sin problema."**
 
 ```md
 "De esa manera, puedo escribir \* sin problema."
