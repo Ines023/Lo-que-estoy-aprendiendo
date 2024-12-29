@@ -733,14 +733,14 @@ for (let i = 1, j = 5; i <= 5; i++, j--) {
 
 ### for ... of
 
-*Estructura de control para recorrer iterables.*
+_Estructura de control para recorrer iterables._
 
 Sin acceder a índices, actuamos sobre cada parte de un iterable.
 
 ```js
-let array = [1,2,3,4,5]
-for (const item of array){
-  console.log(item)
+let array = [1, 2, 3, 4, 5];
+for (const item of array) {
+  console.log(item);
 }
 ```
 
@@ -897,19 +897,20 @@ Una función se llama a si misma.
 - Debemos poner una condición base o se hará un bucle infinito
 
 ```js
-function cuentaAtras (numero) {
-  if (numero < 0) {return}
-  console.log(numero)
-  cuentaAtras (numero-1)
+function cuentaAtras(numero) {
+  if (numero < 0) {
+    return;
+  }
+  console.log(numero);
+  cuentaAtras(numero - 1);
 }
 
-function factorial (n) {
-  if (n === 0 || n === 1){
-    return 1
+function factorial(n) {
+  if (n === 0 || n === 1) {
+    return 1;
   } else {
-    return n * factorial(n-1)
+    return n * factorial(n - 1);
   }
-
 }
 ```
 
@@ -922,34 +923,37 @@ Colección de elementos.
 Utilizamos corchetes y ponemos dentro los distintos elementos.
 
 <blockquote class="comentario">
-  Es posible que sean de cualquier tipo (incluso arrays), que contenga más de un tipo y que los tipos estar intercalados entre sí.  
+  Es posible que sean de cualquier tipo (incluso arrays), que contenga más de un tipo y que los tipos estar intercalados entre sí.
 
-  No es recomendable pero sí posible.
+No es recomendable pero sí posible.
+
 </blockquote>
 
 ```js
-[1,2,3,4,5]
-let arrayVariado = [2, "Hola", null, 4]
+[1, 2, 3, 4, 5];
+let arrayVariado = [2, "Hola", null, 4];
 ```
 
 Para interactuar con alguno de los `elementos` llamamos al `array` y a la posición que buscamos.
 
 <blockquote class="nota">
 
-  **NOTA:** Las posiciones se empiezan a contar desde 0.
+**NOTA:** Las posiciones se empiezan a contar desde 0.
+
 </blockquote>
 
 ```js
-console.log(arrayVariado[2]) // "Hola"
+console.log(arrayVariado[2]); // "Hola"
 
-arrayVariado[2] = true
-console.log(arrayVariado[2]) // true
+arrayVariado[2] = true;
+console.log(arrayVariado[2]); // true
 ```
 
 <blockquote class="nota">
 
-  **¿Tenemos una variable constante y la podemos cambiar?**  
-  No podemos alterar el variable, el array en sí. Pero sí sus elementos internos.
+**¿Tenemos una variable constante y la podemos cambiar?**  
+ No podemos alterar el variable, el array en sí. Pero sí sus elementos internos.
+
 </blockquote>
 
 ### Métodos de los arrays
@@ -962,11 +966,11 @@ Si lo modificamos trunca el array.
 
 #### .pop
 
-Extrae y devuelve el **último** elemento del array.  
+Extrae y devuelve el **último** elemento del array.
 
 #### .shift
 
-Extrae y devuelve el **primer** elemento del array.  
+Extrae y devuelve el **primer** elemento del array.
 
 #### .push
 
@@ -987,25 +991,25 @@ Devuelve un nuevo array, resultado de concatenar el array sobre el que llamas al
 Usamos una estructura de control para interactuar con todos los elementos de un array.
 
 ```js
-let frutas = ["pera","manzana","piña"]
+let frutas = ["pera", "manzana", "piña"];
 
-let i=0
-while (i < frutas.length){
-  console.log(frutas[i])
+let i = 0;
+while (i < frutas.length) {
+  console.log(frutas[i]);
 }
 ```
 
 ```js
-let frutas = ["pera","manzana","piña"]
+let frutas = ["pera", "manzana", "piña"];
 
 // Hacia adelante
-for(let i = 0; i<frutas.length; i++){
-    console.log(frutas[i])
+for (let i = 0; i < frutas.length; i++) {
+  console.log(frutas[i]);
 }
 
 // Hacia atrás
-for(let i = frutas.length-1; i>=0; i--){
-    console.log(frutas[i])
+for (let i = frutas.length - 1; i >= 0; i--) {
+  console.log(frutas[i]);
 }
 ```
 
@@ -1014,14 +1018,16 @@ for(let i = frutas.length-1; i>=0; i--){
 Método para recorrer el array.
 
 ```js
-let frutas = ["pera","manzana","piña"]
+let frutas = ["pera", "manzana", "piña"];
 
-frutas.forEach(function (el,index){
-  console.log("index del elemento: " + index)
-  console.log("elemento: " + el)
-})
+frutas.forEach(function (el, index) {
+  console.log("index del elemento: " + index);
+  console.log("elemento: " + el);
+});
 
-frutas.forEach( el => {console.log("elemento: " + el)})
+frutas.forEach((el) => {
+  console.log("elemento: " + el);
+});
 ```
 
 ### Búsqueda en arrays
@@ -1060,6 +1066,7 @@ Método que ordena arrays.
 
 Convierte los números en Strings y recupera el valor Unicode de ese número.
 Restea el primero menos el segundo:
+
 - Si el resultado es negativo, a es menor que b
 - Si el resultado es positivo, a es mayor que b
 - Si el resultado es 0, son iguales
@@ -1073,13 +1080,13 @@ Restea el primero menos el segundo:
 Llamamos al método con una función con una forma distinta de calcular ese resultado en el que basar el orden.
 
 ```js
-const numeros = [5, 10, 2, 25, 7]
+const numeros = [5, 10, 2, 25, 7];
 
 // ascendente
-numeros.sort((a,b) => a - b)
+numeros.sort((a, b) => a - b);
 
 // descendente
-numeros.sort((a,b) => b - a)
+numeros.sort((a, b) => b - a);
 ```
 
 #### .toSorted
@@ -1107,6 +1114,7 @@ O viceversa, transformarlos y seleccionar solo algunos de los resultados.
 Creamos un único valor a partir de un Array.
 
 Recibe dos parámetros:
+
 - Una función que se ejecutará por cada elemento.  
   Recibe:
   - El acumulador
@@ -1114,25 +1122,24 @@ Recibe dos parámetros:
 - Un valor inicial, opcional, donde podremos acumular los valores
 
 ```js
-const numbers = [1,2,3]
+const numbers = [1, 2, 3];
 
 const sum = numbers.reduce((accumulator, currentNumber) => {
-  return accumulator + currentNumber
-}, 0) // <- el 0 es el valor inicial
+  return accumulator + currentNumber;
+}, 0); // <- el 0 es el valor inicial
 
-console.log(sum) // 6
+console.log(sum); // 6
 ```
 
 ### Matrices
 
 Hacemos un array de arrays, así conseguimos varias dimensiones.
 
-
 ```js
 let matriz = [
   [1, 2, 3],
   [4, 5, 6],
-  [7, 8, 9]
+  [7, 8, 9],
 ];
 
 for (let i = 0; i < matriz.length; i++) {
@@ -1156,13 +1163,13 @@ let persona = {
   direccion: {
     calle: "Calle Falsa",
     numero: 123,
-    ciudad: "Springfield"
+    ciudad: "Springfield",
   },
 
   // MÉTODOS
-  saludar: function() {
+  saludar: function () {
     return `Hola, me llamo ${this.nombre} y tengo ${this.edad} años.`;
-  }
+  },
 };
 ```
 
@@ -1178,9 +1185,9 @@ console.log(persona.direccion.ciudad); // "Springfield"
 console.log(oersina.nombreCompleto); // undefined
 
 // Si accedemos con una variable
-let property = "name"
+let property = "name";
 
-console.log(persona[property]) // "Juan"
+console.log(persona[property]); // "Juan"
 ```
 
 O llamar a sus métodos:
@@ -1191,7 +1198,8 @@ console.log(persona.saludar()); // "Hola, me llamo Juan y tengo 30 años."
 
 <blockquote class="nota">
 
-  **NOTA:** También hay que poner corchetes si el nombre de la propiedad/método tiene espacios o caracteres especiales.
+**NOTA:** También hay que poner corchetes si el nombre de la propiedad/método tiene espacios o caracteres especiales.
+
 </blockquote>
 
 Podemos añadir, eleminar y modificar las propiedades de un objeto
@@ -1216,13 +1224,13 @@ Podemos definir objetos de manera más concisa usando atajos y propiedades compu
 ```javascript
 let nombre = "Ana";
 let edad = 28;
-let hobbies = ["leer", "correr", "programar"]
+let hobbies = ["leer", "correr", "programar"];
 
 let persona = {
   // Busca una variable con ese mismo nombre, crea la propiedad y le asigna ese valor
   nombre,
   edad,
-  hobbies
+  hobbies,
 };
 
 console.log(persona); // { nombre: "Ana", edad: 28, hobbies: ["leer", "correr", "programar"] }
@@ -1236,7 +1244,7 @@ En vez de llamar al objeto y a la propiedad concreta para extraerla y guardarla 
 let persona = {
   nombre: "Ana",
   edad: 28,
-  hobbies: ["leer", "correr", "programar"]
+  hobbies: ["leer", "correr", "programar"],
 };
 
 // Desestructuración
@@ -1253,7 +1261,11 @@ Podemos usar el atajo pero dar a la variable otro nombre:
 
 ```javascript
 // Renombrar variables
-let { nombre: nombrePersona, edad: edadPersona, hobbies: pasatiempos } = persona;
+let {
+  nombre: nombrePersona,
+  edad: edadPersona,
+  hobbies: pasatiempos,
+} = persona;
 
 console.log(nombrePersona); // "Ana"
 console.log(edadPersona); // 28
@@ -1265,7 +1277,12 @@ console.log(pasatiempos); // ["leer", "correr", "programar"]
 En caso de que la propiedad no exista, podemos asignarle un valor por defecto:
 
 ```javascript
-let { nombre = "Desconocido", edad = 0, hobbies = [] , ocupacion = "No especificada" } = persona;
+let {
+  nombre = "Desconocido",
+  edad = 0,
+  hobbies = [],
+  ocupacion = "No especificada",
+} = persona;
 
 console.log(nombre); // "Ana"
 console.log(edad); // 28
@@ -1285,8 +1302,8 @@ let persona = {
   direccion: {
     calle: "Calle Falsa",
     numero: 123,
-    ciudad: "Springfield"
-  }
+    ciudad: "Springfield",
+  },
 };
 
 // Notación de corchetes
@@ -1304,8 +1321,10 @@ let numero = direccion.numero;
 console.log(numero); // 123
 
 // En una sola linea
-let { direccion : { numero} } = persona
-console.log( numero ); // 123
+let {
+  direccion: { numero },
+} = persona;
+console.log(numero); // 123
 ```
 
 ### Iteración de objetos
@@ -1318,7 +1337,7 @@ Podemos usar el bucle `for...in` para iterar sobre las propiedades de un objeto.
 let persona = {
   nombre: "Ana",
   edad: 28,
-  ocupacion: "Desarrollador"
+  ocupacion: "Desarrollador",
 };
 
 for (let propiedad in persona) {
@@ -1341,9 +1360,9 @@ El método `Object.keys()` devuelve un array de las propiedades enumerables de u
 
 ```javascript
 const usuario = {
-  nombre: 'Juan',
+  nombre: "Juan",
   edad: 30,
-  ciudad: 'Madrid'
+  ciudad: "Madrid",
 };
 
 const keys = Object.keys(usuario);
@@ -1356,9 +1375,9 @@ El método `Object.values()` devuelve un array con los valores de las propiedade
 
 ```js
 const usuario = {
-  nombre: 'Juan',
+  nombre: "Juan",
   edad: 30,
-  ciudad: 'Madrid'
+  ciudad: "Madrid",
 };
 
 const values = Object.values(usuario);
@@ -1371,9 +1390,9 @@ El método `Object.entries()` devuelve un array de pares `[key, value]` de las p
 
 ```js
 const usuario = {
-  nombre: 'Juan',
+  nombre: "Juan",
   edad: 30,
-  ciudad: 'Madrid'
+  ciudad: "Madrid",
 };
 
 const entries = Object.entries(usuario);
@@ -1394,11 +1413,11 @@ Podemos evitar el error con if
 let persona = {
   nombre: "Juan",
   direccion: {
-    ciudad: "Springfield"
-  }
+    ciudad: "Springfield",
+  },
 };
 
-if (typeof persona.direccion === 'object' && persona.direccion !== null) {
+if (typeof persona.direccion === "object" && persona.direccion !== null) {
   console.log(persona.direccion.ciudad); // "Springfield"
 } else {
   console.log("La dirección no existe");
@@ -1407,7 +1426,8 @@ if (typeof persona.direccion === 'object' && persona.direccion !== null) {
 
 <blockquote class="nota">
 
-  **NOTA:** Si comparamos con un null, detecta su tipo como object y nos salta el error. Por eso añadimos la comprobación extra.
+**NOTA:** Si comparamos con un null, detecta su tipo como object y nos salta el error. Por eso añadimos la comprobación extra.
+
 </blockquote>
 
 También podemos usar el operador in para comprobar si una propiedad existe.
@@ -1416,17 +1436,27 @@ También podemos usar el operador in para comprobar si una propiedad existe.
 let persona = {
   nombre: "Juan",
   direccion: {
-    ciudad: "Springfield"
-  }
+    ciudad: "Springfield",
+  },
 };
 
-if ('direccion' in persona && persona.direccion !== undefined && persona.direccion !== null && 'ciudad' in persona.direccion) {
+if (
+  "direccion" in persona &&
+  persona.direccion !== undefined &&
+  persona.direccion !== null &&
+  "ciudad" in persona.direccion
+) {
   console.log(persona.direccion.ciudad); // "Springfield"
 } else {
   console.log("La dirección o la ciudad no existen");
 }
 
-if ('contacto' in persona && persona.contacto !== undefined && persona.contacto !== null && 'telefono' in persona.contacto) {
+if (
+  "contacto" in persona &&
+  persona.contacto !== undefined &&
+  persona.contacto !== null &&
+  "telefono" in persona.contacto
+) {
   console.log(persona.contacto.telefono);
 } else {
   console.log("El contacto o el teléfono no existen");
@@ -1441,8 +1471,8 @@ Si la propiedad no existe devuelve `undefined` sin producir ningún error.
 let persona = {
   nombre: "Juan",
   direccion: {
-    ciudad: "Springfield"
-  }
+    ciudad: "Springfield",
+  },
 };
 
 console.log(persona.direccion?.ciudad); // "Springfield"
