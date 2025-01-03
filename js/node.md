@@ -27,6 +27,9 @@ Es monohilo, asíncrono y está orientado a eventos.
     - [Ejemplos](#ejemplos)
   - [fs](#fs)
     - [/promises](#promises)
+  - [Modulo HTTP](#modulo-http)
+    - [HTTP Header](#http-header)
+    - [req argument](#req-argument)
 - [NPM](#npm)
   - [Registro](#registro)
   - [Línea de comandos](#línea-de-comandos)
@@ -38,7 +41,12 @@ Es monohilo, asíncrono y está orientado a eventos.
       - [keywords](#keywords)
       - [license](#license)
     - [Dependecias de producción vs desarrollo](#dependecias-de-producción-vs-desarrollo)
-- [Servidor HTTP sin dependencias](#servidor-http-sin-dependencias)
+- [Eventos](#eventos)
+  - [EventEmitter](#eventemitter)
+  - [Métodos de EventEmitter](#métodos-de-eventemitter)
+  - [Pasar Argumentos a los Eventos](#pasar-argumentos-a-los-eventos)
+  - [Herencia de EventEmitter](#herencia-de-eventemitter)
+  - [Uso en Módulos Nativos](#uso-en-módulos-nativos)
 
 </div>
 
@@ -200,11 +208,11 @@ Podemos leer, escribir, actualizar y eliminar archivos.
 
 1. **Leer** un archivo de **forma síncrona**:
 
-   ```javascript
-   const fs = require("fs");
-   const data = fs.readFileSync("/path/to/file", "utf8");
-   console.log(data);
-   ```
+    ```javascript
+    const fs = require("fs");
+    const data = fs.readFileSync("/path/to/file", "utf8");
+    console.log(data);
+    ```
 
 2. **Escribir** en un archivo de **forma asíncrona**:
 
@@ -279,6 +287,77 @@ Esto permite utilizar `async/await` para manejar operaciones de archivos de mane
    }
    deleteFile();
    ```
+
+### Modulo HTTP
+
+Un servidor puede **recibir** y **responder** a peticiones. 
+
+```js
+const http = require('node:http')
+
+const server = http.createServer((req,res) =>{
+    console.log('request received') 
+    res.end('Hola Mundo')
+})
+```
+
+<blockquote class="comentario">
+
+  console.log() se ve en la consola del **servidor**, no la del **navegador**
+</blockquote>
+
+
+Debemos especificar donde debe escuchar el servidor.
+
+```js
+
+server.listen(0, () => {
+    console.log('server listening on port http://localhost${server.adress().port}')
+})
+```
+
+<blockquote class="nota">
+
+**NOTA:** Al poner puerto 0 busca el primer puerto abierto. Esto en modo desarrollo es de utilidad.
+
+**NUNCA NUNCA USAR EN MODO PRODUCCIÓN.** Lo querremos redireccionar al puerto 80, que siempre estará abierto.
+
+</blockquote>
+
+#### HTTP Header
+
+Si la respuesta del servidor debe mostrarse como html le añadimos una cabecera.
+
+```js
+var http = require('http');
+
+http.createServer(function (req,res){
+    res.writeHead(200,{'Content-Type':'text/html'});
+    res.write('Hello World!');
+    res.end();
+}).listen(8080);
+```
+
+#### req argument
+
+The request object has a property called "url" with the part of the url after the domain name.
+
+Hay algunos módulos que permiten dividir la petición en partes legibles, como el módulo url.
+
+```js
+var http = require('http')
+var url = require('url')
+
+http.createServer(function (req, res) {
+    res.writeHead(200,{'Content-Type':'text/html'});
+    let q = url.parse(req.url,true).query
+    let txt = q.year+" "+q.month
+    res.end(txt)
+}).listen(8080);
+
+// La petición http://localhost:8080/?year=2017&?month=July
+// Produce: 2017 July
+```
 
 ## NPM
 
@@ -466,38 +545,103 @@ Especifica la licencia bajo la cual se distribuye el proyecto.
 }
 ```
 
-## Servidor HTTP sin dependencias
+## Eventos
 
-Un servidor puede **recibir** y **responder** a peticiones. 
+Node.js utiliza un modelo de eventos para manejar operaciones asíncronas. Los eventos son una parte fundamental de Node.js y se gestionan mediante el módulo `events`.
 
-```js
-const http = require('node:http')
+### EventEmitter
 
-const server = http.createServer((req,res) =>{
-    console.log('request received') 
-    res.end('Hola Mundo')
-})
+La clase principal para manejar eventos en Node.js es `EventEmitter`. Puedes crear instancias de `EventEmitter` y registrar oyentes para eventos específicos.
+
+**EJEMPLO BÁSICO:**
+
+```javascript
+const EventEmitter = require('events');
+const myEmitter = new EventEmitter();
+
+// Registrar un oyente para el evento 'event'
+myEmitter.on('event', () => {
+    console.log('Un evento ocurrió!');
+});
+
+// Emitir el evento 'event'
+myEmitter.emit('event');
 ```
 
-<blockquote class="comentario">
+### Métodos de EventEmitter
 
-  console.log() se ve en la consola del **servidor**, no la del **navegador**
-</blockquote>
+- **on(event, listener):** Registra un oyente para el evento especificado.
+- **emit(event, [arg1], [arg2], [...]):** Emite el evento especificado, pasando argumentos opcionales a los oyentes.
+- **once(event, listener):** Registra un oyente que se ejecutará solo la primera vez que se emita el evento.
+- **removeListener(event, listener):** Elimina un oyente específico para el evento especificado.
 
+**EJEMPLO CON `once`:**
 
-Debemos especificar donde debe escuchar el servidor.
+```javascript
+const EventEmitter = require('events');
+const myEmitter = new EventEmitter();
 
-```js
+myEmitter.once('event', () => {
+    console.log('Este evento se ejecuta solo una vez');
+});
 
-server.listen(0, () => {
-    console.log('server listening on port http://localhost${server.adress().port}')
-})
+myEmitter.emit('event'); // Se ejecuta
+myEmitter.emit('event'); // No se ejecuta
 ```
 
-<blockquote class="nota">
+### Pasar Argumentos a los Eventos
 
-**NOTA:** Al poner puerto 0 busca el primer puerto abierto. Esto en modo desarrollo es de utilidad.
+Puedes pasar argumentos adicionales a los oyentes cuando emites un evento.
 
-**NUNCA NUNCA USAR EN MODO PRODUCCIÓN.** Lo querremos redireccionar al puerto 80, que siempre estará abierto.
+**EJEMPLO PASANDO ARGUMENTOS:**
 
-</blockquote>
+```javascript
+const EventEmitter = require('events');
+const myEmitter = new EventEmitter();
+
+myEmitter.on('event', (arg1, arg2) => {
+    console.log(`Evento con argumentos: ${arg1}, ${arg2}`);
+});
+
+myEmitter.emit('event', 'arg1', 'arg2');
+```
+
+### Herencia de EventEmitter
+
+Puedes hacer que tus propias clases hereden de `EventEmitter` para manejar eventos personalizados.
+
+**EJEMPLO DE HERENCIA:**
+
+```javascript
+const EventEmitter = require('events');
+
+class MyEmitter extends EventEmitter {}
+
+const myEmitter = new MyEmitter();
+
+myEmitter.on('event', () => {
+    console.log('Un evento personalizado ocurrió!');
+});
+
+myEmitter.emit('event');
+```
+
+### Uso en Módulos Nativos
+
+Muchos módulos nativos de Node.js, como `fs`, `http` y `net`, utilizan `EventEmitter` para manejar eventos.
+
+**EJEMPLO CON `fs`:**
+
+```javascript
+const fs = require('fs');
+
+const readStream = fs.createReadStream('/path/to/file');
+
+readStream.on('data', (chunk) => {
+    console.log(`Recibido un chunk de datos: ${chunk}`);
+});
+
+readStream.on('end', () => {
+    console.log('Lectura del archivo completada');
+});
+```
